@@ -1,6 +1,6 @@
-defmodule HangmanImplGameTest do
+defmodule ControlsImplGameTest do
   use ExUnit.Case
-  alias Hangman.Impl.Game
+  alias Controls.Impl.Game
 
   test "new game returns structure" do
     game =  Game.new_game

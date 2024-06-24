@@ -1,4 +1,4 @@
-defmodule Hangman.Type do
+defmodule Controls.Type do
   @type state :: :intializing | :won | :lost | :good_guess | :bad_guess | :already_used
   @type tally :: %{
     turns_left: integer,

@@ -1,5 +1,5 @@
-defmodule Hangman.Impl.Game do
-  alias Hangman.Type
+defmodule Controls.Impl.Game do
+  alias Controls.Type
 
   @type t :: %__MODULE__{
     turns_left: integer,

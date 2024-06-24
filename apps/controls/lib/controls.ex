@@ -1,6 +1,6 @@
-defmodule Hangman do
-  alias Hangman.Impl.Game
-  alias Hangman.Type
+defmodule Controls do
+  alias Controls.Impl.Game
+  alias Controls.Type
 
   @opaque game :: Game.t
 
