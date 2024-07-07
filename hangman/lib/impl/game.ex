@@ -17,7 +17,7 @@ defmodule Hangman.Impl.Game do
 
   ############################################################
 
-  @spec new_game() :: t
+  @spec new_game :: t
   def new_game do
     new_game(Dictionary.random_word)
   end
@@ -45,6 +45,17 @@ defmodule Hangman.Impl.Game do
 
   ############################################################
 
+  def tally(game) do
+    %{
+      turns_left: game.turns_left,
+      game_state: game.game_state,
+      letters: reveal_guessed_letters(game),
+      used: game.used |> MapSet.to_list |> Enum.sort,
+    }
+  end
+
+  ############################################################
+
   defp accept_guess(game, _guess, _already_used = true) do
     %__MODULE__{ game | game_state: :already_used }
   end
@@ -64,6 +75,7 @@ defmodule Hangman.Impl.Game do
     { game, tally(game) }
   end
 
+  defp reveal_guessed_letters(game = %{ game_state: :lost }), do: game.letters
   defp reveal_guessed_letters(game) do
     game.letters
     |> Enum.map(fn letter -> MapSet.member?(game.used, letter) |> maybe_reveal(letter) end)
@@ -81,14 +93,4 @@ defmodule Hangman.Impl.Game do
   defp score_guess(game, _bad_guess) do
     %__MODULE__{ game | game_state: :bad_guess, turns_left: game.turns_left - 1 }
   end
-
-  defp tally(game) do
-    %{
-      turns_left: game.turns_left,
-      game_state: game.game_state,
-      letters: reveal_guessed_letters(game),
-      used: game.used |> MapSet.to_list |> Enum.sort,
-    }
-  end
-
 end
