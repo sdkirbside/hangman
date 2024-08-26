@@ -13,14 +13,15 @@ defmodule Hangman.MixProject do
 
   def application do
     [
+      mod: { Hangman.Runtime.Application, [] },
       extra_applications: [:logger, :observer, :wx, :runtime_tools]
     ]
   end
 
   defp deps do
     [
-      {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
-      {:dictionary, path: "../dictionary"}
+      { :dialyxir, "~> 1.0", only: [:dev], runtime: false },
+      { :dictionary, path: "../dictionary" }
     ]
   end
 end
