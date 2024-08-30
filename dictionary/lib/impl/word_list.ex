@@ -6,7 +6,7 @@ defmodule Dictionary.Impl.WordList do
     "../../assets/words.txt"
     |> Path.expand(__DIR__)
     |> File.read!()
-    |> String.split( ~r/\n/, trim: true)
+    |> String.split(~r/\n/, trim: true)
   end
 
   @spec random_word(t) :: String.t
